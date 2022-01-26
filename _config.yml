@@ -28,7 +28,7 @@ email: zhao_sy@126.com
 # facebook_username: /
 # twitter_username: /
 # instagram_username: /
-linkedin_username: /
+# linkedin_username: /
 github_username:  zhaoy2020
 # youtube_channel_id: /
 # reddit_username: /
@@ -45,7 +45,7 @@ disqus-shortname: thedevslot
 # Name of the Author
 author-name: Zhaoy
 # URL for the Image of the Author
-# author-image: https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png /WhatATheme/assets/images/zhaoy.jpg
+# author-image: https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png 
 author-image: /WhatATheme/assets/images/zhaoy.jpg
 # 60 Words About the Author
 author-about: The BMP lab, China Agricultural University.
