@@ -1,100 +1,129 @@
-# WhatATheme
-markdown: kramdown
+# main text of home
+name: John Doe
+bio: A Person who travels the world eating noodles
 
-# URL of the Site
-url: ''
-# Base URL of the Site (i.e., Name of the Repository in which the Site is hosted)
-baseurl: 
+# twitter summary info
+description: A blog about technology and stuff related
 
-# Title of the Site
-title: ZhaoYu's Blog
-# Description of the Site
-description: Learning notes
-# URL of Image of the Site
-site-image: /WhatATheme/assets/images/meta.jpg
-# Keywords of the Site
-site-keywords: Site, Template, Theme
-# URL for the Image of custom Favicon
-favicon-url: 
+# if it's an external image, update below for true
+# better with square images
+external-image: false
+picture: assets/images/profile.jpg
 
-# URL of the Image of Custom Hero Image (i.e., the image in the background of the very first section of the Homepage)
-# heroimage: https://images.pexels.com/photos/220444/pexels-photo-220444.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940
-# heroimage: https://en.wikipedia.iwiki.eu.org/wiki/Bacillus_subtilis#/media/File:Bacillus_subtilis.jpg
-heroimage: /WhatATheme/assets/images/Bacillus_subtilis.jpg
+# your site color theme, false to light theme
+dark-theme: true
 
-# Social Media and Contact
-# If you don't want to use any icon, you can leave them blank.
-email: zhao_sy@126.com
-# facebook_username: /
-# twitter_username: /
-# instagram_username: /
-# linkedin_username: /
-github_username:  zhaoy2020
-# youtube_channel_id: /
-# reddit_username: /
-# behance_username: /
-# dribbble_username: /
-# spotify_username: /
+# If you want to include your resume, set to true
+# and specify source (external or local).
+resume: true
+resume-external: true
+resume-url: https://google.com/?q=my+resume
 
-# Google Analytics
-google-analytics: UA-163806439-1
+url: https://sergiokopplin.github.io/indigo
+# your url: https://USERNAME.github.io
 
-# Disqus
-disqus-shortname: thedevslot
+permalink: /:title/
 
-# Name of the Author
-author-name: Zhaoy
-# URL for the Image of the Author
-# author-image: https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png 
-author-image: /WhatATheme/assets/images/zhaoy.jpg
-# 60 Words About the Author
-author-about: The BMP lab, China Agricultural University.
-# URL to the Author's Profile (i.e., Github, Twitter, Stackoverflow, etc)
-author-url: https://github.com/zhaoy2020
+# To enable google analytics, supply your token below
+# analytics-google: 'UA-MYANALYTICS'
 
-# SASS
-sass:
-  sass_dir: _sass
-  style: compressed
+# if you don't want comments in your posts, leave categories empty
+disqus:
+  shortname: github # enter this from your disqus account
+  categories: [blog, project] # only show disqus for posts that have these categories
 
-# Build settings
-plugins:
-  - jekyll-admin
-  - jekyll-feed
+# if you don't have any of social below, comment the line
+facebook: myfacebook
+twitter: mytwitter
+instagram: myinstagram
+linkedin: mylinkedin
+github: mygithub
+email: myemail@gmail.com
 
-# Permalink
-permalink: "blog/:title"
+authors:
+  johndoe:
+    name: John Doe
+    bio: A Man who travels the world eating noodles
+    external-image: false
+    picture: assets/images/profile.jpg
+    twitter: johndoe
+  jamesfoster:
+    name: James Foster
+    bio: A Man who develops software with coffee
+    external-image: false
+    picture: assets/images/james.jpg
+    twitter: jamesfoster
 
-# Compress
-compress_html:
-  clippings: all
+# do you want a larger site? change the option below
+# options: [normal, large] | default: normal
+# normal = 560px / large = 810px
+width: normal
 
-# Defaults
+# if you do/don't need pagination, toggle 'enabled' between true/false below
+pagination:
+  enabled: false
+  sort_reverse: true # display recent posts first
+  title: ":title" # Changing this will mess up the header display logic
+  per_page: 5
+  permalink: "/:num/" # pagination link that will be appended
+
+# if you don't need projects, comment the *projects* configs below
+projects: true
+
+# if you don't need "about" or "blog", comment them out below
+about: true
+blog: true
+
+# do you want to show the "read time" of the posts?
+read-time: true
+
+# do you want to show the "tags" inside the posts?
+show-tags: true
+
+# related posts inside a post?
+related: true
+
+# Display links for next and previous posts for the specified categories
+post-advance-links: [blog]
+
+# show author block at the end of a post ?
+show-author: true
+
+# do you want some animations?
+animation: true
+
+# add default values to specific pages or layouts
 defaults:
-  -
-    scope:
-      type: 'posts'
+  - scope:
+      path: "" # an empty string here means all files in the project
+      layout: "post"
     values:
-      layout: post
-      post-image: ""
-      description: ""
-      tags:
-        - ""
-  -
-    scope:
-      type: 'pages'
-    values:
-      layout: page
+      # setting all post to not hidden by default,
+      # can be overridden in the front matter for a specific post
+      hidden: false
 
-# Exclude
+plugins:
+  - jekyll-seo-tag
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+  - jekyll-admin
+  - jekyll-paginate-v2
+
+jekyll-mentions:
+  base_url: https://github.com
+
+compress_html:
+  ignore:
+    envs:
+      - development
+      - stage
+
 exclude:
-  - .sass-cache/
-  - .jekyll-cache/
-  - gemfiles/
-  - Gemfile
-  - Gemfile.lock
-  - node_modules/
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - vendor/ruby/
+  [
+    "README.md",
+    "Gemfile",
+    "Gemfile.lock",
+    "FAQ.md",
+    "vendor",
+  ]
