@@ -1,0 +1,541 @@
+---
+title: "十分钟学会Shell"
+layout: post
+date: 2022-01-20 22:44
+image: /assets/images/markdown.jpg
+headerImage: false
+tag:
+- Shell
+- 10 mins
+star: true
+category: blog
+author: ZhaoY
+description: 10 mins learning Shell
+---
+
+# 基础知识
+## 执行方式
+```shell
+vim sample.sh
+#!/bin/sh
+echo 'Hellow world!'
+
+# 方式一（文件开头插入执行bash命令的位置）
+chmod 755 sample.sh
+./sample.sh
+
+# 方式二（不需要制定执行bash命令的位置）
+bash sample.sh
+sh sample.sh
+```
+## bash多条命令顺序执行
+    方式一：
+    ls -a ; cd /etc ; date # 分号分割不同命令，之间无任何逻辑联系
+    方式二：
+    ls -a && cd /etc # 前一个命令正确执行后才执行第二个命令
+    方式三：
+    ls -a || cd /etc # 当前一个命令执行错误时才执行第二个命令
+## 管道符
+    命令一 | 命令二 | 命令三  把命令一的结果作为命令二的执行条件，再把命令二的结果作为命令三的执行条件。
+
+## bash的标准输入和输出
+    键盘 /dev/stdin 0 标准输入
+    显示器 /dev/stdou 1 标准输出
+    显示器 /dev/stderr 2 标准错误输出
+## bash接受键盘输入
+    Read 【选项】 【变量名】
+    -p 在等待输入时显示的提示信息
+    -t 等待时间
+    -n 只接受指定的字符数
+    -s 隐藏输入数据，用于机密
+    变量名可以自定义，默认REPLY
+实例：
+```shell
+read -s 30 -p "please entry a number:" age
+```
+## bash输出
+```shell
+echo "Hellow World!"
+print "Hellow World!" # 自动添加/n
+printf "Hellow World!\n" # 默认末尾不会添加\n
+```
+## bash的输入重定向：改键盘输入方式为从文件中读取输入
+    command < inputfile
+    command << inputfile
+## bash的输出重定向：把命令的输出结果由显示器改为文件中
+    命令 > 文件 覆盖方式，只能保存命令执行==正确==后的结果。
+    命令 >> 文件 追加方式，只能保存命令执行==正确==后的结果。
+    命令 2> 文件 覆盖方式，保存命令执行==错误==的结果。
+    命令 2>> 文件 追加方式，保存命令执行==错误==的结果。
+    命令 >/>> 文件 2>&1 覆盖/追加方式，保存命令执行==正确/错误==结果到同一个文件中。==&>==
+    命令 >> 文件一 2>>文件二 追加方式，保存命令执行==正确/错误==结果到同一个文件中。
+## 正则表达式
+### 基础正则表达式
+    *表示星号前一个字符重复0次或无数次。
+    .匹配除了换行符以外的任意一个字符。
+    ^匹配行。如^hellow，匹配段落以hellow开头的记录。
+    $匹配行尾。如hellow$匹配hellow结尾的记录。
+    ^$表示匹配空白行。Grep –V ”^$” test.txt 表示取反，即查找除空白行以外行。
+    \转义字符，取消其后符号的特殊意义。.$去除空行，\.$表示所有以.结尾的行。
+    []中括号中的一个字符，这和通配符类似。[0-9] [a-z] [A-Z]
+    [^]匹配出中括号内字符以外的任意一个字符。
+    \{3\}前一个字符重复三次。如a\{3\}查找a重复三次的行。
+    \{n,m\}前一个字符最少重复n次，最多重复m次。
+### 扩展正则表达式
+    grep默认不支持扩展正则表达式，必须家-E选项后方可使用。
+    +前一个字符重复一次或无数次。
+    ？前一个字符匹配0次或1次。
+    |匹配两个或多个分之选择。Was|his匹配包含was的行，也匹配包含his的行。
+    （）视为一个整体。
+
+# Bash语法
+## 数据类型
+字符串
+数值型
+数组
+
+## 变量
+### 命名
+==字母数字下划线==
+默认是==字符型==，指定为数值型时才能进行运算。
+赋值时用等号，但两端==不能有空==格。
+若赋值存在空格，用==双引号==，name=”You are so beautiful!”,其中“\” “KaTeX parse error: Undefined control sequence: \“ at position 47: …。 在变量中可以使用转义字符”\̲“̲ ==环境变量最好大写==，以…name”
+
+### 自定义变量
+==增、删、查、改==  
+变量定义：name=”haha“  
+变量调用：$name  
+变量查看：set  
+变量删除：unset 变量名
+
+### 环境变量
+    export AGE=18 # 定义系统变量
+    echo $PATH # 显示已有的系统变量
+    PATH=$PATH:/home/manager/Desttop/share # 在PATH变量后面添加内容（命令路径）
+
+### 环境变量配置文件
+    生效：
+    source 配置文件或.配置文件
+    目前linux下环境变量的配置文件：
+    /etc/profile
+    /etc/profile.d/*.sh
+    ~/.bash_profile
+    ~/.bashrc
+    /etc/bashrc
+    面向所用用户
+    只面向当前用户
+
+### 位置参数变量
+$0, $1, …, $9, ${10, ${11}，分别表示==命令本身==，命令后的==第一==个参数，第==二==个参数，…，第十个参数，第十一个参数。  
+```shell
+实例：
+	Vim count.sh
+	#!/bin/bash
+	a=$1
+	b=$2
+	sum=$(($a+$b))  #$(())将字符转为数值后进行计算
+	echo $sum
+	chmod 755 count.sh
+	./count.sh 22223 363666 将两数相加
+```
+预定义变量：
+```shell
+		$? 上一条命令的执行状态，0：正常，非0：不正常。
+		$$ 当前运行的进程ID号，PID
+		$! 后台运行的最后一个进程的ID号，PID
+```
+
+## bash的运算
+expr 处理数学表达式
+```shell
+$ expr 1 + 5 # 有空格才行，不推荐使用此方法
+```
+$[ operation ]
+```shell
+echo $[1+3]  # 只能计算整数
+```
+bc bash的计算器，可以计算浮点数
+```shell
+bc # 进入计算器模式
+variable=$(echo "optional ; expression" | bc)
+var=$(echo "scale=4; 3.44 / 5" | bc)
+```
+declare [+/-] 变量名
+```shell
+X=1
+Y=2
+Declare –i x
+Declare –i y
+Declare sum=$x+$y # 没有空格
+echo $sum	
+```
+
+## 控制流程
+### bash条件判断
+```shell
+1.判断文件类型：
+	Test –e test.txt 文件是否存在
+		[-e test.txt] 同上，更加常用
+		[-d test] 判断是否为目录
+		[-f test.txt] 判断是否为普通文件
+		[-l test] 判断是否为连接
+		[-s test.txt] 判断文件是否为空
+
+2.两个整数之间的比较
+	 	[  –qe y ] && echo “yes” || echo “no”
+3.字符串之间比较
+		Name=”hah”
+		[ -z $name ] && echo “yes” || echo “no”
+4.数值比较
+		-eq #等于
+		-gt #大于
+		-ge #大于等于
+		-lt #小于
+		-le #小于等于
+		-ne #不等于
+```
+
+### bash条件循环
+```sehll
+单分支:
+	If [ 条件判断 ] 
+	then
+			pass
+	Fi
+双分支：
+	If [ 条件判断 ]
+		Then
+			Pass
+		Else
+			Pass
+	Fi
+多分支判断语句：
+	If [ 判断 ]
+		Then
+			Pass
+	Elif [ 判断 ]
+		Then
+			Pass
+	Elif [ panduan ]
+		Then
+			Pass
+	Else
+		但所有条件不成立时执行此pass
+	Fi
+多分枝case语句：
+	Case $变量名 in
+		”1值“）
+			Pass
+		；；
+		”2值“）
+			Pass
+		；；
+		*）
+			默认执行此pass
+	Esac
+
+Bash的for语句：
+	For i in 1值 2值 3值 。。。
+		Do
+			Pass
+		Done
+	或者：
+	For （（i=1;tiaojian;i=i+1））
+	Do
+		Pass
+	Done
+
+Bash的while语句：条件成立时循环
+	While [ 判断 ] #中括号
+	Do
+		Pass
+	Done
+
+Bash的untill语句：条件不成立时循环，和while刚好相反
+		Until [ panduan ]
+		Do
+			Pass
+		Done
+
+Bash的exit语句：
+```
+
+## 函数
+```shell
+function test_fun(){
+    echo 'This is a brif test in bash funchtion.'
+}
+
+test_fun # 调用的时候不需要使用括号
+```
+
+## grep
+    Usage: grep [OPTION]... PATTERN [FILE]...  
+    Search for PATTERN in each FILE.
+    -i 或 --ignore-case : 忽略字符大小写的差别。  
+    -q 或 --quiet或--silent : 不显示任何信息。  
+    -C<显示行数> 或 --context=<显示行数>或-<显示行数> : 除了显示符合样式的那一行之外，并显示该行之前后的内容。   
+    -r 或 --recursive : 此参数的效果和指定"-d recurse"参数相同。  
+## sed
+    Usage: sed [OPTION]... {script-only-if-no-other-script} [input-file]...
+    sed的命令格式： sed [option] 'sed command'filename
+    sed的脚本格式：sed [option] -f 'sed script'filename
+    参数说明：
+    -n ：只打印模式匹配的行
+    -e ：直接在命令行模式上进行sed动作编辑，此为默认选项
+    -f ：将sed的动作写在一个文件内，用–f filename 执行filename内的sed动作
+    -r ：支持扩展表达式
+    -i ：直接修改文件内容
+    
+    动作说明：
+    a ：新增， a 的后面可以接字串，而这些字串会在新的一行出现(目前的下一行)～
+    c ：取代， c 的后面可以接字串，这些字串可以取代 n1,n2 之间的行！
+    d ：删除，因为是删除啊，所以 d 后面通常不接任何咚咚；
+    i ：插入， i 的后面可以接字串，而这些字串会在新的一行出现(目前的上一行)；
+    p ：打印，亦即将某个选择的数据印出。通常 p 会与参数 sed -n 一起运行～
+    s ：取代，可以直接进行取代的工作哩！通常这个 s 的动作可以搭配正规表示法！例如 1,20s/old/new/g 就是啦！ 
+    
+    1)使用行号，可以是一个简单数字，或是一个行号范围
+    x # x为行号
+    x,y # 表示从x行到y行的所有行
+    /pattern # 查询包含模式的行
+    /pattern /pattern # 产选包含两个模式的行
+    pattern/,x # 在给定行号上查询包含模式的行
+    x,/pattern/ # 通过行号和模式查询的行
+    x,y! # 查询不包含制定行号x和y的行
+    
+    sed '2p' data # sed默认打印所有行，第二行会打印两次
+    sed -n '2p' data # 只显示符合匹配的行
+    sed -n '1,3p' data # 打印第一到第三行
+    sed -n '/second/p' data # 打印文件中匹配second字符的行
+    sed -n '/second/,10p'data # 打印从匹配second的行到第十行的所有行
+    sed -n '/second/,/three/p' data # 打印匹配second的行到匹配three的行的所有行
+    
+    2)使用正则表达式、扩展正则表达式(必须结合-r选项)
+    
+    ^ 锚点行首的符合条件的内容，用法格式"^pattern"
+    $ 锚点行首的符合条件的内容，用法格式"pattern$"
+    ^$ 空白行
+    . 匹配任意单个字符
+    * 匹配紧挨在前面的字符任意次(0,1,多次)
+    .* 匹配任意长度的任意字符
+    \？ 匹配紧挨在前面的字符0次或1次
+    \{m,n\} 匹配其前面的字符至少m次，至多n次
+    \{m,\} 匹配其前面的字符至少m次
+    \{m\} 精确匹配前面的m次\{0,n\}:0到n次
+    \< 锚点词首----相当于 \b，用法格式：\<pattern
+    \> 锚点词尾，用法格式:\>pattern
+    \<pattern\> 单词锚点
+    [] 匹配指定范围内的任意单个字符
+    [^] 匹配指定范围外的任意单个字符
+    [:digit:] 所有数字, 相当于0-9， [0-9]---> [[:digit:]]
+    [:lower:] 所有的小写字母
+    [:upper:] 所有的大写字母
+    [:alpha:] 所有的字母 
+    [:alnum:] 相当于0-9a-zA-Z
+    [:space:] 空白字符
+    [:punct:] 所有标点符号
+
+## awk
+    awk [选项参数] 'script' var=value file(s)
+    或
+    awk [选项参数] -f scriptfile var=value file(s)
+    -F fs or --field-separator fs 指定输入文件折分隔符，fs是一个字符串或者是一个正则表达式，如-F:。 
+
+# Tips
+## 用户管理
+```shell
+cat /etc/default/useradd # 默认配置文件
+cat /etc/passwd # 用户信息
+cat /etc/group # 用户组信息
+
+# 添加新的用户账号 
+useradd 选项 用户名
+-c comment 指定一段注释性描述。
+-d 目录 指定用户主目录，如果此目录不存在，则同时使用-m选项，可以创建主目录。
+-g 用户组 指定用户所属的用户组。
+-G 用户组，用户组 指定用户所属的附加组。
+-s Shell文件 指定用户的登录Shell。
+-u 用户号 指定用户的用户号，如果同时有-o选项，则可以重复使用其他用户的标识号。
+useradd bmp
+useradd -u 666 -d /bmp_WorkStation -c "A good man" bmp #添加一个用户名是 bmp 的用户，组 ID 是 666，家目录是 /bmp_WorkStation，用户说明是“A good man”
+
+# 用户密码管理
+passwd 选项 用户名
+-l 锁定口令，即禁用账号。
+-u 口令解锁。
+-d 使账号无口令。
+-f 强迫用户下次登录时修改口令。
+passwd UserName #root 用户可以修改任何用户的密码，只要在 passwd 后面跟相应的用户名即可。普通用户只能修改自己的密码，这时只要输入passwd，然后回车就可以，后面无需跟用户名。
+echo "123" | passwd --stdin supermouse #将用户supermouse的密码设置为123
+passwd -l supermouse #锁定用户，锁定用户时，Linux执行的操作其实就是在shadow文件中，该用户的密码前面加了两个感叹号。
+passwd -u supermouse #解锁用户
+
+# 修改账号
+usermod 选项 用户名
+# usermod 和 useradd 的功能类似，区别在于 usermod 命令的操作对象是已存在的用户，useradd 命令的操作对象是将要添加的新用户。正因如此，usermod 和 useradd 命令的部分选项是一样的。
+uermod -c "General user" supermouse # 修改用户supermouse的描述信息
+usermod -s /bin/ksh -d /home/z –g developer sam # 此命令将用户sam的登录Shell修改为ksh，主目录改为/home/z，用户组改为developer。
+
+# 修改用户密码状态：chage
+
+# 删除用户
+userdel 选项 用户名
+-r:删除用户的同时删除该用户的家目录以及其他与该用户相关的文件。
+userdel -r sam # 此命令删除用户sam在系统文件中（主要是/etc/passwd, /etc/shadow, /etc/group等）的记录，同时删除用户的主目录。
+
+# 查看用户 ID 和用户所在的组的 ID：id
+
+# 用户切换命令：su
+# su 是 switch user 的简写，su 命令的一般用法是：su - 用户名，注意：中间的那个短线不能省略，而且短线两侧有空格。
+
+# who 命令可以查看当前有多少用户正在登录。 
+# tty 表示本地终端，pts 表示远程终端，pts 后面的数字用来区别不同的远程终端。
+w 命令可以查看更详细的登录用户信息。
+```
+## 用户组管理
+```shell
+# 添加用户组 
+groupadd [选项] 组名
+-g GID 指定新用户组的组标识号（GID）。
+-o 一般与-g选项同时使用，表示新用户组的GID可以与系统已有用户组的GID相同。
+group flying #添加一个名为flying的组，组ID由系统默认生成
+group -g 666 flying #添加一个名为flying的组，指定组ID是666
+
+# 修改用户组 
+groupmod [选项] 组名
+groupmod -n fighting flying #将flying组改名为fighting
+
+# 删除用户组 groupdel 组名
+groupdel flying #删除flying组
+
+# 把用户加入组或从组中删除 gpasswd [选项] 组名
+gpasswd -a user1 root #把user1用户加入root组
+gpasswd -d user3 root #把user3用户从root组中删除
+```
+## 登录后提示信息
+```shell
+cat /etc/motd.d/cockpit
+vim /etc/motd.d/cockpit
+```
+## 快捷键
+    ctrl c # 取消
+    ctrl z # 暂停某个程序
+    ctrl u # 删除光标之前所有
+    ctrl k # 删除光标之后所有
+    ctrl a # 移动至最前面
+    ctrl e # 移动至最后面
+## 截取字符串
+### 利用cut
+
+    Usage: cut OPTION... [FILE]...  
+    Print selected parts of lines from each FILE to standard output.
+    -d # 制定分隔符
+    -f # 分割后的字符段
+```shell
+cat /etc/passwd | cut -d : -f 1
+```
+### 利用echo ${variable#content} 
+==注意*在分割符左右的位置，当#时*在左，当$时*再右==。
+```shell
+test="beautiful:soul:right:who:world!"
+
+echo ${test#*:} # 输出soul:right:who:world!
+echo ${test##*:} # 输出world!
+
+echo ${test%:*} # 输出beautiful:soul:right:who
+echo ${test%%:*} # 输出beautiful
+```
+
+## 后台运行
+    ./sample.sh & # & 将脚本放置后台运行，不影响当前shell使用，但当shell关闭时后台程序也随之消失。
+    
+    nohup ./sample.sh # 将程序和当前shell解除关联，即当shell关闭时，程序仍然在后台执行。
+    
+    nohup ./smale.sh & # 将程序放置后台执行并解除与当前shell的关联。
+
+jobs  
+bg  
+fg
+    
+    # 当./sample.sh已经运行很长时间仍不见结束，可此时将其放置后台执行。
+    ./sample.sh # 一直在执行
+    ctrl z # 先暂停程序，并记录后台程序编号，如1，2等
+    disown %编号 # disown表示将此程序与shell解除关联
+
+## 管理进程
+kill和pkill
+## 并行运行
+parallel -j 64 --xapply "fastqc -o output_dir {1}" ::: `ll ./clean_data/`
+
+
+# 发送消息
+```shell
+
+wall '您占用超1TB存储空间，请删除无用缓存释放空间。' # 向所有用户  
+write username # 想特定用户发送，ctrl+D结束。
+
+```
+# tar使用
+```shell
+# 打包+压缩
+tar [选项] [-f 压缩包名称] 被压缩文件或目录
+-c 打包
+-f 指定压缩包名称，加上扩展名
+-v 显示打包过程
+tar -cvf test.tar test # 打包
+gzip test.tar # 压缩 .gz
+bzip2 test.tar # 压缩 .bz2
+tar -zcvf test.tar.gz test # 打包+压缩为gz格式
+tar -jcvf test.tar.bz2 test # 打包+压缩为bz2格式
+
+# 解压
+tar [选项] 压缩包
+-x 解压
+-f 指定压缩包文件名
+-t 测试，就是不解压，只是查看其中内容
+-C 目录：指定解压位置
+
+tar -xvf test.tar # 解包
+tar -zxvf test.tar.gz # 解压+解包gz格式
+tar -jxvf test.tar.bz2 # 解压+解包bz2格式
+```
+# 用户空间管理
+```shell
+sudo vim /etc/fstab
+# 添加 defaults,surquota,grpquota到相应行
+umount /bmp/exp
+mount -a
+mount | grep "exp" # 查看挂在情况
+xfs_quota -x -c "limit bsoft=1G bhard=2G net2021 " /bmp/exp
+xfs_quota -x -c "limit bsoft=1G bhard=2G net2021 " /bmp/exp
+xfs_quota -x -c "report -ubh" /bmp/exp/ # 查看配置情况
+```
+# ssh和sftp
+```shell
+ssh zhaoyu@202.205.91.135
+sftp zhaoyu@202.205.91.135
+sftp> lcd # local cd
+sftp> lls # local ls
+sftp> put -r G:/2博士 /bmp/exp/2019-zhaoyu/WorkStation/SSD_backup/20220108
+sftp> put G:/2博士/xxx.txt /bmp/exp/2019-zhaoyu/WorkStation/SSD_backup/20220108/
+sftp> get -r /bmp/exp/2019-zhaoyu/WorkStation/SSD_backup/20220108 G:/2博士
+sftp> get /bmp/exp/2019-zhaoyu/WorkStation/SSD_backup/20220108/XXX.txt G:/2博士/
+```
+自动备份  
+```shell
+IP=202.205.91.135
+USER=zhaoyu
+
+local=/g/2博士
+remot=/bmp/exp/2019-zhaoyu/WorkStation/SSD_backup/`date +%Y%m%d`
+echo "copy all files in ${local} to $remot in remote serve."
+
+sftp ${USER}@${IP} <<EOF
+mkdir   ${remot}/2博士
+put -r $local  $remot
+EOF
+
+echo "ALL RIGHT"
+
+```
