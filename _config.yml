@@ -17,7 +17,8 @@ dark-theme: false
 # and specify source (external or local).
 resume: true
 resume-external: local
-resume-url: https://google.com/?q=my+resume
+# resume-url: https://google.com/?q=my+resume
+resume-url: resume.md
 
 url: https://zhaoy2020.github.io
 # your url: https://USERNAME.github.io
@@ -37,7 +38,7 @@ facebook: /
 twitter: /
 instagram: /
 linkedin: /
-github: https://github.com/zhaoy2020
+github: zhaoy2020
 email: zhao_sy@126.com
 
 #authors:
