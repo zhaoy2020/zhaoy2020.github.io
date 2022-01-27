@@ -1,0 +1,367 @@
+---
+title: "十分钟学会Python"
+layout: post
+date: 2022-01-25 22:44
+image: /assets/images/markdown.jpg
+headerImage: false
+tag:
+- Python
+- 10 mins
+star: true
+category: blog
+author: ZhaoY
+description: 10 mins learning python
+---
+
+# 标识符
+```python
+# 由数字、字母和下划线组成，并且不能以下划线开头
+# 变量命名规则：genome_name = 'Bacillus subtilis GLB 191'
+# 常量命名规则：GENOME_SIZE = 1400000
+# 函数命名规则：def genome_name(*argv)
+# 类命名规则：class genome_Type()
+```
+# 数据类型Data type
+## 数值型
+### 整数型 int
+### 浮点型 float
+### 复数 complex
+## 字符型
+## 布尔型
+## 数据类型转换
+```python
+int()
+float()
+chr(i) # 返回整数i对应的ASCII字符
+str(obj) # 把数字或其他对象转换成字符串
+```
+# 输入输出
+## 输入
+```python
+# input只能输入字符型
+input('Please entry:')
+# eval（）函数将字符型数值转换为数值型
+num = eval(input('Please entry'))
+```
+## 输出
+```python
+# 打印字符串
+print('You are so beautiful', 'haha', '\n')
+# 打印变量的值
+print(num, name, Chinese, Math, English)
+# 打印字符串和变量，格式化输出
+name = 'zhaoyu'
+Chinese = 100
+Math = 150
+print('{name}的语文成绩是{Chinese},数学是{Math}'.format(name= name, Chinese= Chinese, Math= Math)) # 推荐这种使用方式，可以打乱顺序进行打印
+print('{}的语文成绩是{}'.format(name, Chinese))
+```
+# 数据结构Data structure
+## 序列
+### 字符串
+```python
+# 单引号 '
+str = 'You are so beautiful'
+# 双引号 ""
+str = "You are so beautiful"
+# 三引号 ''' '''
+str = '''You are so beautiful'''
+# r u：unicode等
+str = r'D:/ProgrameFiles'
+```
+### 字符串操作
+```python
+s = 'You are so beautiful'
+
+# 增
+s + ' I think so' + ' Hi Jackie Chen' # 收尾连接各个字符串
+''.join([s, 'Hi Jackie Chen', 'Hi Sam Hong']) # 同上，但更适用于大数据的拼接
+s*5 # 字符重复5次
+
+# 删
+
+# 查
+s[index]
+s.find('CD') # 返回CD在s中的位置，无则返回-1 
+s.count()
+
+# 改
+s.replace(old, new)
+
+# 其他
+s.lower() #
+s.split(sep=',') # 以,分割
+s.strip() # 删除字符串首尾指定字符（默认为空格）
+```
+### 列表和列表生成器
+#### 普通列表生成
+```python
+lis = list()
+lis = []
+```
+#### 列表生成器生成
+```python
+lis = [i for i in range(10)]
+print(lis)
+结果：[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+```python
+lis = [i for i in range(10) if i > 5] # if True后面不可以接else,否则报错。
+print(lis)
+结果：[6, 7, 8, 9]
+```
+```python
+lis = [i for i in range(10) if i > 5 else 'other'] # if True后面不可以接else,否则报错。
+print(lis)
+结果：lis = [i for i in range(10) if i > 5 else 'other']
+结果：SyntaxError: invalid syntax
+```
+```python
+lis = [i if i > 5 else 'others' for i in range(10)] # 必须家else pass，否则报错
+print(lis)
+结果：['others', 'others', 'others', 'others', 'others', 'others', 6, 7, 8, 9]
+```
+```python
+lis = [i if i > 5  for i in range(10)] # 必须家else pass，否则报错
+print(lis)
+结果：lis = [i if i > 5  for i in range(10)]
+结果：SyntaxError: invalid syntax
+```
+#### 对列表的操作
+```python
+lis = [ i for i in range(10)]
+
+# 切片
+lsi[0:3:1] # 从0开始取3个并且是每隔1个的方式
+
+# 增
+lis.append() # 在末尾追加元素
+lis.insert(0, '插入') # 在下标为0的值前面插入 '插入'字符串
+lis.extend(lis2) # 将lis2列表中元素追加到lis尾部
+
+# 删
+del lis[1] # 删除下标为1的元素
+lis.pop(1) # 删除下标为1的元素，默认删除末尾元素
+lis.remove(value) # 删除value这个值
+lis.clear() # 删除所有元素
+
+# 索引/查
+lis[0] # 查找下标为0的数值
+lis[1] # 查找下标为2的数值
+lis.count(value) # 统计lis这个列表中value的个数
+lis.sort() # 对lis进行排序
+
+# 改
+lis[0] = 'other'
+
+# 其他
+lis.sort() # 默认升序，若要降序则用参数reverse=True
+```
+### 元组（不可变）
+```python
+tur = tuple()
+tur = ()
+```
+#### 对元组的操作
+```python
+# 增
+
+# 删
+del 
+# 查
+
+# 改
+
+# 其他
+
+```
+## 非序列
+### 字典和字典生成器
+#### 普通字典生成
+```python
+dic = dict()
+dic = {}
+```
+#### 字典生成器生成
+```python
+dic = {i:j if i>1 & i>2 else '不符合' for i in range(10) for j in range(10)}
+```
+#### 对字典的操作
+```python
+dic = {i:j for i, j  in  zip(range(10), range(10))}
+
+# 增
+dic[insert_key] = "insert_value"
+
+# 删
+dic.clear()
+dic.pop(key) # 删除key对应的元素
+
+# 查
+dic[key]
+dic.keys() # dic的所有key
+dic.values() # dic的所有value
+
+# 改
+dic[key] = modification_value
+```
+# 流程控制
+## 判断if
+多行形式  
+```python
+if True1:
+    pass1
+elif True2:
+    pass2
+elif True3:
+    pass3
+else:
+    pass4
+```
+一行形式/三元操作符（==这种更加符合pythonic的风格==）
+```python
+pass1 if True1 else pass2 if True2 else pass3 if True3 else pass4 
+```
+## 循环while和for
+### while循环  
+```python
+while True:
+    pass
+```
+### for是“遍历”而不像“循环”  
+```python
+for item in intems:
+    pass
+    
+zip('abcd', range(10), range(10)) # 
+enumrate()
+
+```
+### 循环终止break与跳出continue
+```python
+break # 结束所有循环
+continue # 结束此次循环，跳转至下一次循环
+```
+尽量减少循环嵌套，最好不要嵌套超过3层，否则计算复杂度太高。
+# 函数function
+## 函数参数长度可变
+```python
+# 函数声明
+# *argv以元组的形式传参
+def func1(a, b=0, *argv): 
+    pass
+    return 0
+    
+# 函数调用    
+func1(1, 2, (x, 10))
+
+# 函数声明
+# **argv以字典的形式传参
+def func2(a=0, b, **argV):
+    pass
+    return 0
+    
+# 函数调用  
+func2(1, 2, {x: 10})
+```
+## 匿名函数lambda
+```python
+def func(arg1, arg2):
+    return pass
+# 等价于
+lambda arg1, arg2 : pass
+```
+## 闭包（就是函数嵌套）
+### 普通闭包形式
+```python
+def outfunc(a,b):
+    def innerfunc(x):
+        c = a*x + b
+        return c
+    return innerfunction
+    
+formulate = outfunc(1, 100) # type(formulate)为function
+formulate(50)
+```
+### 装饰器（函数作为参数时候的闭包）
+将函数封装成装饰器函数，可以依次封装多次调用，避免重复代码  
+```python
+def timer(function): # 装饰函数声明
+    def inner(a, b):
+        print("start")
+        function(a, b)
+        print("stop")
+        return 0
+    return inner
+    
+@timer # 语法糖
+def sum_diy(a, b) # 被装饰函数声明
+    print('{}+{}={}'.format(a, b, a + b))
+    return 0
+
+# 函数调用,带参数
+sum_diy(a, b) 
+```
+装饰器可以带参数  
+```python
+def new_timer(argv):
+    def timer(func):
+        def inner(a, b):
+            print('start')
+            funct(a, b)
+            print('stop')
+            return 0
+        return inner
+    return timer
+    
+@new_timer('add')
+def test_sum(a, b):
+    print('{}+{}={}'.format(a, b, a + b))
+    
+test_sum(1, 2)
+```
+# 包
+## 模块文件
+```python
+
+```
+## 包文件夹
+```python
+
+```
+# 面向对象OOP
+## 封装
+## 继承
+## 多态
+# Tips 三方库
+## argparse 
+接受command输入参数  
+```python
+import argparse 
+
+def main():
+    '''main function'''
+    parser = argparse.ArgumentParser(description='批量计算pearson并绘制热图')
+    parser.add_argument('-input', help='输入datas.xls', type=str)
+    parser.add_argument('-tax_id', help='分类水平的单元简称', type=str)
+    parser.add_argument('-row_compounds', help='化合物数目', type=int)
+    parser.add_argument('-col_strains', help='微生物数目', type=int)
+    parser.add_argument('-output', help='输出文件名称', type=str)
+    args = parser.parse_args()
+    file_path = args.input
+    tax_id = args.tax_id
+    row_compounds = args.row_compounds
+    col_strains = args.col_strains
+    
+    # r_store, p_store_asterisk = cache('p',52,13)
+    # tax_id,row_compounds,col_strains
+    r_store, p_store_asterisk = cache(file_path,tax_id,
+                                      row_compounds,
+                                      col_strains)
+                                      
+if __name__ == '__main__':
+    '''
+    process
+    '''
+    main()
+```
