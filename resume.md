@@ -4,7 +4,7 @@ layout: page
 ---
 ![Profile Image]({% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %})
 
-<p>The BMPlab, China Agriculture University.</p>
+<p>The BMP lab, China Agriculture University.</p>
 
 
 
@@ -25,4 +25,3 @@ layout: page
 	<li><a href="https://github.com/">Genomics</a></li>
 	<li><a href="https://github.com/">Molecular Biology</a></li>
 </ul>
-
