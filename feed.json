@@ -1,0 +1,42 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "lab-site",
+    "description": "",
+    "home_page_url": "https://zhaoy2020.github.io",
+    "feed_url": "https://zhaoy2020.github.io/feed.json",
+    "user_comment": "",
+    "icon": "https://zhaoy2020.github.io/media/website/bacillus.webp",
+    "author": {
+        "name": "Yu Zhao"
+    },
+    "items": [
+        {
+            "id": "https://zhaoy2020.github.io/learning-gnn.html",
+            "url": "https://zhaoy2020.github.io/learning-gnn.html",
+            "title": "Learning GNN",
+            "summary": "What is the GNN? This class will tell you what the GNN is.",
+            "content_html": "<p>What is the GNN?</p><h1 id=\"concepts\">Concepts</h1>\n<p>This class will tell you what the GNN is.</p>",
+            "author": {
+                "name": "Yu Zhao"
+            },
+            "tags": [
+            ],
+            "date_published": "2025-04-22T15:04:21+08:00",
+            "date_modified": "2025-04-22T15:04:21+08:00"
+        },
+        {
+            "id": "https://zhaoy2020.github.io/learning-pytorch.html",
+            "url": "https://zhaoy2020.github.io/learning-pytorch.html",
+            "title": "Learning PyTorch",
+            "summary": "Start the demo. This is a simplest demo for learning PyTorch. All codes of utils. import torch from torch import nn class Trainer: def __init__(self): super().__init__()",
+            "content_html": "<p>Start the demo.</p><h1 id=\"concepts\">Concepts</h1>\n<p>This is a simplest demo for learning PyTorch.</p><h1 id=\"utils\">Utils</h1>\n<p>All codes of utils.</p><pre><code class=\"language-python\">import torch\nfrom torch import nn \n\nclass Trainer:\n        def __init__(self):\n                        super().__init__()\n</code></pre>\n",
+            "author": {
+                "name": "Yu Zhao"
+            },
+            "tags": [
+            ],
+            "date_published": "2025-04-22T15:00:59+08:00",
+            "date_modified": "2025-04-22T15:08:58+08:00"
+        }
+    ]
+}
