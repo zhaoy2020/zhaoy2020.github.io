@@ -1,24 +1,24 @@
+html {
+  scroll-behavior: smooth; /* 平滑滚动效果 */
+}
+
 body {
-  font-family: sans-serif;
-  background: #fff;
-  padding: 2rem;
-  color: #333;
-  /* padding-top: 80px; */
+  font-family: sans-serif; /* 设置字体为无衬线字体 */
 }
 
 /* 导航栏 */
 nav {
   position: fixed; /* 固定在页面顶部 */
-  top: 0; /* 贴着屏幕顶端,距离顶部0px */
+  top: 0; /*贴着屏幕顶端,距离顶部0px */
   width: 100%; /* 占满整个页面宽度。 */
   background-color: #4b2e83;
   z-index: 1000; /* 确保导航栏显示在最前面。 */
 }
 
 .nav-container {
-  max-width: 1200px; /* 设置最大宽度，避免在大屏幕上过于宽 */
+  max-width: 1000px; /* 设置最大宽度，避免在大屏幕上过于宽 */
   margin: 0 auto; /* 让导航栏内容居中。 */
-  padding: 0 2rem; /* 导航内容左右边距，防止贴边。 */
+  padding: 0 auto; /* 导航内容左右边距，防止贴边。 */
   height: 40px;
   display: flex; /* 启用弹性布局。 */
   justify-content: space-between; /* 让左边和右边的内容分散对齐。 */
@@ -52,6 +52,10 @@ nav {
 /* 等宽水平排列 */
 .information {
   display: flex;
+  flex-direction: row; /* 水平排列 */
+  justify-content: space-between; /* 两端对齐，左右两边的元素分散对齐。 */
+  align-items:flex-start; /* 垂直方向上顶部对齐。 */
+
 }
 /* 等宽水平排列 */
 .information div {
@@ -61,12 +65,14 @@ nav {
 .picture {
   width: 270px;
   height: 300px;
+  /* border-radius: 10px 10px 10px 10px/10px 10px 10px 10px;  */
+  border-radius: 0px; 
 }
 
 .container {
-  max-width: 900px;
+  max-width: 1000px;
   margin: auto;
-  padding-top: 80px; /* 留出顶部导航的空间 */
+  padding-top: 40px; /* 留出顶部导航的空间 */
 }
 
 .filter-group {
