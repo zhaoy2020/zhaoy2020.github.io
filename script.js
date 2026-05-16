@@ -1,5 +1,13 @@
 const papers = [
   {
+    title: "Microbiome dysbiosis and metabolic reprogramming in kiwifruit peel during Botrytis cinerea infection",
+    authors: "Jingsheng Chen†, Rui Ma†, Yu Zhao†, Yuan Sui, Zhuo  Chen, Xianmei Xiao*, Zhenshuo Wang*, Jia Liu*",
+    year: 2026,
+    topic: ["Molecular Biology", "Plant Microecology"],
+    img: "https://ars.els-cdn.com/content/image/1-s2.0-S0925521426002863-ga1.jpg",
+    link: "https://doi.org/10.1016/j.postharvbio.2026.114437"
+  },
+  {
     title: "Efficient transformation and genome editing in a nondomesticated, biocontrol strain, Bacillus subtilis GLB191",
     authors: "Yu Zhao, Zhenshuo Wang, Qian Wang, Bing Wang, Xiaoning Bian, Qingchao Zeng, Daowan Lai, Qi Wang, Yan Li",
     year: 2024,
@@ -9,7 +17,7 @@ const papers = [
   },
   {
     title: "Kiwifruit resistance to gray mold is enhanced by yeast-induced modulation of the endophytic microbiome",
-    authors: "Qinhong Liao†, Yu Zhao†, Zhenshuo Wang†, Longfeng Yu, Qiqian Su, Jiaoqian Li, Anran Yuan, Junkui Wang, Dawei Tian, Chenglin Lin, Xiaoya Huang, Wenhua Li, Zhiqiang Sun, Qi Wang, Jia Liu",
+    authors: "Qinhong Liao†, Yu Zhao†, Zhenshuo Wang†, Longfeng Yu, Qiqian Su, Jiaoqian Li, Anran Yuan, Junkui Wang, Dawei Tian, Chenglin Lin, Xiaoya Huang, Wenhua Li, Zhiqiang Sun, Qi Wang*, Jia Liu*",
     year: 2024,
     topic: ["Plant Microecology"],
     img: "https://ars.els-cdn.com/content/image/1-s2.0-S004896972403256X-ga1.jpg",
