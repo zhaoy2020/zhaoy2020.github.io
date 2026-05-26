@@ -3,6 +3,7 @@ const papers = [
     title: "Microbiome dysbiosis and metabolic reprogramming in kiwifruit peel during Botrytis cinerea infection",
     authors: "Jingsheng Chen†, Rui Ma†, Yu Zhao†, Yuan Sui, Zhuo  Chen, Xianmei Xiao*, Zhenshuo Wang*, Jia Liu*",
     year: 2026,
+    journal: "Postharvest Biology and Technology",
     topic: ["Molecular Biology", "Plant Microecology"],
     img: "https://ars.els-cdn.com/content/image/1-s2.0-S0925521426002863-ga1.jpg",
     link: "https://doi.org/10.1016/j.postharvbio.2026.114437"
@@ -11,6 +12,7 @@ const papers = [
     title: "Efficient transformation and genome editing in a nondomesticated, biocontrol strain, Bacillus subtilis GLB191",
     authors: "Yu Zhao, Zhenshuo Wang, Qian Wang, Bing Wang, Xiaoning Bian, Qingchao Zeng, Daowan Lai, Qi Wang, Yan Li",
     year: 2024,
+    journal: "Phytopathology Research",
     topic: ["Molecular Biology", "Plant Microecology"],
     img: "https://media.springernature.com/full/springer-static/image/art%3A10.1186%2Fs42483-024-00287-0/MediaObjects/42483_2024_287_Fig3_HTML.png?as=webp",
     link: "https://link.springer.com/article/10.1186/s42483-024-00287-0"
@@ -19,6 +21,7 @@ const papers = [
     title: "Kiwifruit resistance to gray mold is enhanced by yeast-induced modulation of the endophytic microbiome",
     authors: "Qinhong Liao†, Yu Zhao†, Zhenshuo Wang†, Longfeng Yu, Qiqian Su, Jiaoqian Li, Anran Yuan, Junkui Wang, Dawei Tian, Chenglin Lin, Xiaoya Huang, Wenhua Li, Zhiqiang Sun, Qi Wang*, Jia Liu*",
     year: 2024,
+    journal: "The Science of the Total Environment",
     topic: ["Plant Microecology"],
     img: "https://ars.els-cdn.com/content/image/1-s2.0-S004896972403256X-ga1.jpg",
     link: "https://www.sciencedirect.com/science/article/pii/S004896972403256X"
@@ -27,6 +30,7 @@ const papers = [
     title: "A microbial consortium‐based product promotes potato yield by recruiting rhizosphere bacteria involved in nitrogen and carbon metabolisms",
     authors: "Zhenshuo Wang, Yan Li, Yu Zhao, Lubo Zhuang, Yue Yu, Mengyao Wang, Jia Liu, Qi Wang",
     year: 2021,
+    journal: "Microbial Biotechnology",
     topic: ["Plant Microecology"],
     img: "https://enviromicro-journals.onlinelibrary.wiley.com/cms/asset/37993e73-2836-4dbf-928b-603deb8a793a/mbt213876-toc-0001-m.jpg",
     link: "https://enviromicro-journals.onlinelibrary.wiley.com/doi/full/10.1111/1751-7915.13876"
@@ -35,6 +39,7 @@ const papers = [
     title: "Comprehensive genomic analysis of Bacillus subtilis 9407 reveals its biocontrol potential against bacterial fruit blotchs",
     authors: "Xiaofei Gu, Qingchao Zeng, Yu Wang, Jishun Li, Yu Zhao, Yan Li, Qi Wang",
     year: 2021,
+    journal: "Phytopathology Research",
     topic: ["Molecular Biology", "Plant Microecology"],
     img: "https://media.springernature.com/full/springer-static/image/art%3A10.1186%2Fs42483-021-00081-2/MediaObjects/42483_2021_81_Fig6_HTML.png?as=webp",
     link: "https://link.springer.com/article/10.1186/s42483-021-00081-2"
@@ -43,7 +48,8 @@ const papers = [
     title: "Interaction of viral pathogen with porin channels on the outer membrane of insect bacterial symbionts mediates their joint transovarial transmission",
     authors: "Wei Wu, Lingzhi Huang, Qianzhuo Mao, Jing Wei, Jiajia Li, Yu Zhao, Qian Zhang, Dongsheng Jia, Taiyun Wei",
     year: 2019,
-    topic: ["Molecular Biology", "Plant Microecology"],
+    journal: "Philosophical Transactions of the Royal Society B: Biological Sciences",
+    topic: ["Molecular Biology"],
     img: "https://royalsocietypublishing.org/cms/asset/e5ffd8c7-8cb4-474c-a121-54e0944a0452/rstb20180320f01.jpg",
     link: "https://royalsocietypublishing.org/doi/full/10.1098/rstb.2018.0320"
   },
@@ -70,7 +76,7 @@ const renderPapers = () => {
       <div class="paper-info">
         <strong>${p.title}</strong>
         <p><em>${p.authors}</em></p>
-        <p>${p.year} | <a href="${p.link}">PDF</a></p>
+        <p>${p.year} | ${p.journal} | <a href="${p.link}">PDF</a></p>
       </div>
     `;
     list.appendChild(div);
