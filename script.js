@@ -1,5 +1,14 @@
 const papers = [
   {
+    title: "Artificial intelligence and biotechnology for smart storage: Quality and safety perspectives in horticultural produce",
+    authors: "Yuan Sui†, Yu Zhao†, Wenxuan Chen, Bin Duan*, Zhenshuo Wang*, Zhuo Chen*",
+    year: 2026,
+    journal: "Current Research in Food Science",
+    topic: ["AI for Science", "Plant Microecology"],
+    img: "https://ars.els-cdn.com/content/image/1-s2.0-S2665927126002947-ga1.jpg",
+    link: "https://doi.org/10.1016/j.crfs.2026.101594"
+  },
+  {
     title: "Microbiome dysbiosis and metabolic reprogramming in kiwifruit peel during Botrytis cinerea infection",
     authors: "Jingsheng Chen†, Rui Ma†, Yu Zhao†, Yuan Sui, Zhuo  Chen, Xianmei Xiao*, Zhenshuo Wang*, Jia Liu*",
     year: 2026,
