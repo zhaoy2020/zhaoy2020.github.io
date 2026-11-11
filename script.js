@@ -1,5 +1,14 @@
 const papers = [
   {
+    title: "Amplicon sequencing dataset of rhizosphere microbiomes associated with potato cultivation in Southwest China",
+    authors: "Yu Zhao, Wenxuan Chen, Haiping Shen, Yun Xu, Zhenshuo Wang, Qi Wang",
+    year: 2026,
+    journal: "Scientific Data",
+    topic: ["AI for Science", "Plant Microecology"],
+    img: "https://github.com/zhaoy2020/Amplicon-sequencing-dataset/blob/main/Figures/Figure%201.png?raw=true",
+    link: "https://doi.org/10.1038/s41597-026-08622-0"
+  },
+  {
     title: "Artificial intelligence and biotechnology for smart storage: Quality and safety perspectives in horticultural produce",
     authors: "Yuan Sui†, Yu Zhao†, Wenxuan Chen, Bin Duan*, Zhenshuo Wang*, Zhuo Chen*",
     year: 2026,
